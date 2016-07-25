@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <script src="websocket.js"></script>
+        <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+
+        <div id="wrapper">
+            <h1>W3C Car Signal API</h1>
+            <p>Testing JSON car signal api using a websocket implementation.
+                subscribe starts listening, stop interrupts the data stream,
+                2016 Mitsubishi Electric, GOT (c)</p>
+            <br />
+            <!--div id="addDevice">
+                <div class="button"> <a href="#" OnClick="showForm()">Add a device</a> </div>
+                <form id="addDeviceForm">
+                    <h3>Add a new device</h3>
+                    <span>Name: <input type="text" name="device_name" id="device_name"></span>
+                    <span>Type: 
+                        <select id="device_type">
+                            <option name="type" value="Appliance">Appliance</option>
+                            <option name="type" value="Electronics">Electronics</option>
+                            <option name="type" value="Lights">Lights</option>
+                            <option name="type" value="Other">Other</option>
+                        </select></span>
+
+                    <span>Description:<br />
+                        <textarea name="description" id="device_description" rows="2" cols="50"></textarea>
+                    </span>
+
+                    <input type="button" class="button" value="Add" onclick=formSubmit()>
+                    <input type="reset" class="button" value="Cancel" onclick=hideForm()>
+                </form>
+            </div-->
+            <div id="content">
+                <input type="button" class="button" value="subscribe to Vehicle.speed" onClick=subscribetoSpeed()>
+                <input type="button" class="button" value="unsubscribe to speed" onClick=stopsubscribetoSpeed()>
+                
+                <input type="button" class="button" value="subscribe to Vehicle.door.*" onClick=subscribetoDoor()>
+                <input type="button" class="button" value="unsubscribe to Vehicle.door.*" onClick=stopsubscribetoDoor()>
+                
+                
+                <div>
+                    <p>
+                        <span>SPEED IS: </span>  
+                        <output id="Vehicle.speed">0</output> <span> KM/H </span>
+                    </p>
+                    
+                    <p>
+                        <span>LEFT FRONT DOOR IS OPEN: </span>  
+                        <output id="Vehicle.door.0.left.open">false</output>
+                    </p>
+                    
+                    <p>
+                        <span> LEFT FRONT DOOR IS LOCKED: </span>  
+                        <output id="Vehicle.door.0.left.locked">false</output>
+                    </p>
+                  
+                    <p>
+                        <span>LEFT FRONT WINDOW POSITION IS: </span>  
+                        <output id="Vehicle.door.0.left.windowpos">0</output>
+                    </p>
+                    
+                    <p>
+                        <span>RIGHT FRONT DOOR IS OPEN: </span>  
+                        <output id="Vehicle.door.0.right.open">false</output>
+                    </p>
+                    
+                    <p>
+                        <span>RIGHT FRONT DOOR IS LOCKED: </span>  
+                        <output id="Vehicle.door.0.right.locked">false</output>
+                    </p>
+                    
+                    <p>
+                        <span>RIGHT FRONT WINDOW POSITION IS: </span>  
+                        <output id="Vehicle.door.0.right.windowpos">0</output>
+                    </p>
+                    
+                    <p>
+                        <span>LEFT REAR DOOR IS OPEN: </span>  
+                        <output id="Vehicle.door.1.left.open">false</output>
+                    </p>
+                    
+                    <p>
+                        <span>LEFT REAR DOOR IS LOCKED: </span>  
+                        <output id="Vehicle.door.1.left.locked">false</output>
+                    </p>
+                    
+                    <p>
+                        <span>LEFT REAR WINDOW POSITION IS: </span>  
+                        <output id="Vehicle.door.1.left.windopos">0</output>
+                    </p>
+                    
+                    <p>
+                        <span>RIGHT REAR DOOR IS OPEN: </span>  
+                        <output id="Vehicle.door.1.right.open">false</output>
+                    </p>
+                    
+                    <p>
+                        <span>RIGHT REAR DOOR IS LOCKED: </span>  
+                        <output id="Vehicle.door.1.right.locked">false</output>
+                    </p>
+                    
+                    <p>
+                        <span>RIGHT REAR WINDOW POSITION IS: </span>  
+                        <output id="Vehicle.door.1.right.windowpos">0</output>
+                    </p>
+                    
+                    <p>
+                        <span>TRUNK IS OPEN: </span>  
+                        <output id="Vehicle.door.2.right.open">false</output>
+                    </p>
+                    
+                    <p>
+                        <span>TRUNK IS LOCKED: </span>  
+                        <output id="VVehicle.door.2.right.locked">false</output>
+                    </p>
+                    
+                </div>
+                
+                
+            </div>
+        </div>
+
+    </body>
+</html>
