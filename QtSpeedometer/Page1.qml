@@ -19,11 +19,11 @@ Page1Form {
 
         onTextMessageReceived: {
 
-          // ugly hack, lets parse this JSON proper...sometime soon
-          valueindex_start= message.lastIndexOf(":")+1
-          valueindex_end = message.lastIndexOf("}")
+            //TODO ugly hack, lets parse this JSON proper...sometime soon
+            valueindex_start= message.lastIndexOf(":")+1
+            valueindex_end = message.lastIndexOf("}")
 
-          speedmeter.value = message.substring(valueindex_start,valueindex_end)
+            speedmeter.value = message.substring(valueindex_start,valueindex_end)
 
         }
 
@@ -53,26 +53,26 @@ Page1Form {
         width: 310
         height: 310
         anchors.centerIn: parent
-    CircularGauge {
-        id: speedmeter
+        CircularGauge {
+            id: speedmeter
 
-        minimumValue:0
-        maximumValue: 220
-        width: 300
-        height: 300
+            minimumValue:0
+            maximumValue: 220
+            width: 300
+            height: 300
 
-        anchors.centerIn: parent
+            anchors.centerIn: parent
 
-        style: CircularGaugeStyle {
+            style: CircularGaugeStyle {
 
-            needle: Rectangle {
-                y: outerRadius * 0.15
-                implicitWidth: outerRadius * 0.03
-                implicitHeight: outerRadius * 0.9
-                antialiasing: true
-                color: Qt.rgba(0.66, 0.3, 0, 1)
+                needle: Rectangle {
+                    y: outerRadius * 0.15
+                    implicitWidth: outerRadius * 0.03
+                    implicitHeight: outerRadius * 0.9
+                    antialiasing: true
+                    color: Qt.rgba(0.66, 0.3, 0, 1)
+                }
             }
         }
-    }
     }
 }
