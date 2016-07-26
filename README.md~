@@ -8,7 +8,5 @@ Qt 5.7 was used to develop the Qt client.
 
 No license is used for the sources, thus, they may be used in any way.
 
-The server currently implements SUBSCRIBE and UNSUBSCRIBE. The "simulated" signal is speed and door.*, and the implementation serves as a CONCEPT STUDY.
-
 Peter Winzell, Mitsubishi Electric.
 peterwinzell.gbg@gmail.com
