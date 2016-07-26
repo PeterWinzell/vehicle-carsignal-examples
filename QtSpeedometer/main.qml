@@ -6,25 +6,25 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("Qt Speedometer client")
 
     SwipeView {
         id: swipeView
         anchors.fill: parent
-        currentIndex: tabBar.currentIndex
+        //currentIndex: tabBar.currentIndex
 
         Page1 {
         }
 
-        Page {
+        /*Page {
             Label {
                 text: qsTr("Second page")
                 anchors.centerIn: parent
             }
-        }
+        }*/
     }
 
-    footer: TabBar {
+    /*footer: TabBar {
         id: tabBar
         currentIndex: swipeView.currentIndex
         TabButton {
@@ -33,5 +33,5 @@ ApplicationWindow {
         TabButton {
             text: qsTr("Second")
         }
-    }
+    }*/
 }
