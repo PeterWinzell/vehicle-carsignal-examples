@@ -73,6 +73,12 @@ Page1Form {
                     color: Qt.rgba(0.66, 0.3, 0, 1)
                 }
             }
+
+            Behavior on value {
+                    NumberAnimation {
+                        duration: 1000
+                    }
+             }
         }
     }
 }
