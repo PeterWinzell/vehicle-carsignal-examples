@@ -8,4 +8,7 @@
       <description>Keep a copy of the generated servlet class' java code.</description>
     </property>
   </jsp-config>
+  <message-destination>
+    <message-destination-name>destination1</message-destination-name>
+  </message-destination>
 </glassfish-web-app>
