@@ -1,0 +1,32 @@
+PODS:
+  - Starscream (2.0.1)
+  - SwiftyJSON (3.1.1)
+  - WMGaugeView (0.0.4)
+
+DEPENDENCIES:
+  - Starscream (~> 2.0.1)
+  - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
+  - WMGaugeView (from `https://github.com/Will-tm/WMGaugeView.git`)
+
+EXTERNAL SOURCES:
+  SwiftyJSON:
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  WMGaugeView:
+    :git: https://github.com/Will-tm/WMGaugeView.git
+
+CHECKOUT OPTIONS:
+  SwiftyJSON:
+    :commit: 1dc2ce0f913b27380cd5b803af8aa853745b9608
+    :git: https://github.com/SwiftyJSON/SwiftyJSON.git
+  WMGaugeView:
+    :commit: 410b36f43180ece9ae29a8eca2e5f02d2e36309e
+    :git: https://github.com/Will-tm/WMGaugeView.git
+
+SPEC CHECKSUMS:
+  Starscream: ce7a202d95615bd4113bc5a0f1932f1db8c808a4
+  SwiftyJSON: f0be2e604f83e8405a624e9f891898bf6ed4e019
+  WMGaugeView: 88e8184dece095bb749f3300d457af1451580d71
+
+PODFILE CHECKSUM: fd19f25137255f787ace4064ffd855065f154649
+
+COCOAPODS: 1.1.1

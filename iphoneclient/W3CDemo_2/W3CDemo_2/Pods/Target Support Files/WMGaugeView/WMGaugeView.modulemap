@@ -1,0 +1,6 @@
+framework module WMGaugeView {
+  umbrella header "WMGaugeView-umbrella.h"
+
+  export *
+  module * { export * }
+}

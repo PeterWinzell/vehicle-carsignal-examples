@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>Pods-W3CDemo_2.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Starscream.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>SwiftyJSON.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>WMGaugeView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>7912BE8F3EF93236EA62171231A3CB53</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8025890F8C07F682005D6E97ED30FF5E</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>AF830DD3278BA8F008C2BAF65D8219B1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>C7C427F895FC5E12DDCD0211E957D782</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
