@@ -5,6 +5,7 @@
         <group>
             <file>file:/Users/peterwinzell/Development/WebSocketApps/vehicle-carsignal-examples/CarSignalBrokerSimulation/src/com/mitsubishi/Door.java</file>
             <file>file:/Users/peterwinzell/Development/WebSocketApps/vehicle-carsignal-examples/CarSignalBrokerSimulation/src/com/mitsubishi/Acceleration.java</file>
+            <file>file:/Users/peterwinzell/Development/WebSocketApps/vehicle-carsignal-examples/CarSignalBrokerSimulation/src/com/mitsubishi/Bodyplacement.java</file>
             <file>file:/Users/peterwinzell/Development/WebSocketApps/vehicle-carsignal-examples/CarSignalBrokerSimulation/src/com/mitsubishi/SpeedInterface.java</file>
         </group>
     </open-files>

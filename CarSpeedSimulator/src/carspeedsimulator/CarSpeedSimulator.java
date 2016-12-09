@@ -142,7 +142,7 @@ public class CarSpeedSimulator extends Application {
         
         try {
             final VehicleClient vehicleClient = new VehicleClient();
-            URI uri = new URI("ws://192.168.31.113:8080/W3CSocketish/actions");
+            URI uri = new URI("ws://192.168.1.38:8080/W3CSocketish/actions");
             System.out.println("URI is: " + uri.toString());
             vehicleClient.connectToServer(uri);
             

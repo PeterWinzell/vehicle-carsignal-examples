@@ -1,0 +1,23 @@
+# Uncomment the next line to define a global platform for your project
+# platform :ios, '9.0'
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '10.0'
+
+target 'W3CDemo' do
+  # Comment the next line if you're not using Swift and don't want to us dynamic frameworks
+  use_frameworks!
+
+  # Pods for W3CDemo
+  pod 'SwiftyJSON',:git => 'https://github.com/SwiftyJSON/SwiftyJSON.git'
+  pod 'Starscream', '~> 2.0.1'
+
+  target 'W3CDemoTests' do
+    inherit! :search_paths
+    # Pods for testing
+  end
+
+  target 'W3CDemoUITests' do
+    inherit! :search_paths
+    # Pods for testing
+
+end

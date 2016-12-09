@@ -10,7 +10,7 @@
 
 window.onload = init;
 
-var socket = new WebSocket("ws://192.168.31.149:8080/W3CSocketish/actions");
+var socket = new WebSocket("ws://192.168.31.125:8080/W3CSocketish/actions");
 
 socket.onmessage = onMessage;
 socket.onopen = onOpen;

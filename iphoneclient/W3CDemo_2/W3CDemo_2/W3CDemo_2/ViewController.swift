@@ -25,11 +25,24 @@ import UIKit
 import WMGaugeView
 
 
-class ViewController: UIViewController {
-    var gaugeView: WMGaugeView!
 
+class ViewController: UIViewController, UITextFieldDelegate{
+    var gaugeView: WMGaugeView!
+    
+    @IBOutlet weak var SpeedLabel: UILabel!
+    @IBOutlet weak var subscribe: UIButton!
+    @IBOutlet weak var VSSServerUrl: UITextField!
+    @IBOutlet weak var Label: UILabel!
+    @IBOutlet weak var ChangeText: UIButton!
+    
+    var currentUrl  = "ws://192.168.31.125:8080/W3CSocketish/actions";
+    
+    @IBAction func TouchedOutside(_ sender: Any) {
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.VSSServerUrl.delegate = self;
+        VSSServerUrl.text = currentUrl;
         SocketIOManager.sharedInstance.setURL(VSSServerUrl.text!)
         // Do any additional setup after loading the view, typically from a nib.
         NotificationCenter.default.addObserver(self, selector: #selector(self.updateSpeedLabel), name: NSNotification.Name(rawValue: "updateSpeed"), object: nil)
@@ -59,8 +72,7 @@ class ViewController: UIViewController {
         gaugeView.rangeLabelsWidth = 0.04
         gaugeView.rangeLabelsFont = UIFont(name: "Helvetica",size: 0.04)
         
-        subscribe.backgroundColor = UIColor.black
-        
+        subscribe.backgroundColor = UIColor.darkGray
         self.view.backgroundColor = UIColor.black
         
     }
@@ -70,14 +82,26 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-   
-
-    @IBOutlet weak var SpeedLabel: UILabel!
-
-    @IBOutlet weak var subscribe: UIButton!
-    @IBOutlet weak var VSSServerUrl: UITextField!
-    @IBOutlet weak var Label: UILabel!
-    @IBOutlet weak var ChangeText: UIButton!
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true;
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        currentUrl = textField.text!
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        textField.text = currentUrl
+        return true
+    }
+    
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        return false
+    }
     
     @IBOutlet weak var childView: UIView!
     /*@IBAction func setLabel(){
