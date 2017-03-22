@@ -33,6 +33,7 @@ import java.io.StringReader;
 import java.io.StringWriter;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javafx.geometry.Insets;
@@ -45,6 +46,7 @@ import javax.json.Json;
 import javax.json.JsonObject;
 import javax.json.JsonWriter;
 import javax.json.stream.JsonParser;
+import javax.json.JsonReader;
 import javax.json.stream.JsonParser.Event;
 
 
@@ -60,6 +62,8 @@ public class CarSpeedSimulator extends Application {
     private Gauge speedGauge;
     private Button btn;
     
+    private String subId;
+    private VehicleClient vehicleClient;
 
     public synchronized void speedChange(int speed) {
         speedGauge.setValue(speed);
@@ -68,6 +72,7 @@ public class CarSpeedSimulator extends Application {
     @Override
     public void init() {
         
+        vehicleClient = new VehicleClient();
         speedGauge = new Gauge();
         speedGauge.setSkinType(Gauge.SkinType.SIMPLE_DIGITAL);
         //speedGauge.setBackgroundPaint(PAINT);
@@ -108,43 +113,31 @@ public class CarSpeedSimulator extends Application {
     }
 
     private int ValidateJSonMessage(String message){
-         JsonParser parser = Json.createParser(new StringReader(message)); 
-         Event event = parser.next();
+         JsonReader aReader = Json.createReader(new StringReader(message));
+         JsonObject jsonObject = aReader.readObject();
          
-         if (event == Event.START_OBJECT)
-             event = parser.next();
-         else 
-            return -1; 
          
-         if (event == Event.KEY_NAME)
-            event = parser.next();
-         else
-            return -1;
-         
-         // choose not to check actual key_name value
-         if (event == Event.VALUE_STRING)
-             event = parser.next();
-         else 
-             return -1;
-         
-         if (event == Event.KEY_NAME)
-             event = parser.next();
-         else
-             return -1;
-         
-         if ( event == Event.VALUE_NUMBER)
-             return parser.getInt();
+         String actionS = jsonObject.getString("action");
+         if (actionS.equals("subscribing")){
+             //subId = jsonObject.getString("subscriptionid");
+             String value = jsonObject.getString("value");
+             float val = Float.parseFloat(value);
+             return Math.round(val);
+         }
+         else if(actionS.equals("subscribe")){
+             subId = jsonObject.getString("subscriptionId");
+         }
          return -1;
+        
     }
     
     @Override
     public void start(Stage primaryStage) { 
         
         try {
-            final VehicleClient vehicleClient = new VehicleClient();
-            URI uri = new URI("ws://192.168.1.38:8080/W3CSocketish/actions");
+            URI uri = new URI("wss://127.0.0.1:8080");
             System.out.println("URI is: " + uri.toString());
-            vehicleClient.connectToServer(uri);
+            
             
             vehicleClient.addMessageHandler(new VehicleClient.MessageHandler() {
                 public void handleMessage(String message) {
@@ -166,10 +159,12 @@ public class CarSpeedSimulator extends Application {
                 
                 JsonProvider provider = JsonProvider.provider();
                 
+                
                 JsonObject messageObject = provider.createObjectBuilder()
                         .add("action","subscribe")
-                        .add("type","change")
-                        .add("path","Vehicle.speed")
+                        .add("path","Signal.Drivetrain.Transmission.Speed")
+                        .add("requestId","1")
+                        .add("timestamp",new Timestamp(System.currentTimeMillis()).toString())
                         .build();
                 
                 StringWriter stWriter = new StringWriter();
@@ -190,9 +185,11 @@ public class CarSpeedSimulator extends Application {
             public void handle(WindowEvent e) {
                 
                 JsonProvider provider = JsonProvider.provider();
+                
                 JsonObject messageObject = provider.createObjectBuilder()
                         .add("action","unsubscribe")
-                        .add("path","Vehicle.speed")
+                        .add("subscriptionId",subId)
+                        .add("requestId",10)
                         .build();
                 
                 StringWriter stWriter = new StringWriter();
@@ -207,6 +204,7 @@ public class CarSpeedSimulator extends Application {
         });
 
         primaryStage.show();
+        vehicleClient.connectToServer(uri);
         
         } 
         catch (URISyntaxException ex) {

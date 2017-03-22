@@ -22,17 +22,21 @@ package carspeedsimulator;
  */
 import java.io.IOException;
 import java.net.URI;
+import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.websocket.ClientEndpoint;
 import javax.websocket.CloseReason;
-import javax.websocket.ContainerProvider;
 import javax.websocket.DeploymentException;
 import javax.websocket.OnClose;
 import javax.websocket.OnMessage;
 import javax.websocket.OnOpen;
 import javax.websocket.Session;
 import javax.websocket.WebSocketContainer;
+import org.glassfish.tyrus.client.ClientManager;
+import org.glassfish.tyrus.client.ClientProperties;
+import org.glassfish.tyrus.client.SslContextConfigurator;
+import org.glassfish.tyrus.client.SslEngineConfigurator;
 
 /**
  * Vehicle Information Client
@@ -42,24 +46,46 @@ import javax.websocket.WebSocketContainer;
 @ClientEndpoint
 public class VehicleClient {
 
-    Session userSession = null;
-    private MessageHandler messageHandler;
-    private WebSocketContainer container;
+    private static Session userSession = null;
+    private static MessageHandler messageHandler;
+    // private WebSocketContainer container;
+    private static ClientManager client;
+    private static CountDownLatch latch;
 
     public VehicleClient() {
         try {
-            container = ContainerProvider.getWebSocketContainer();
+
+            // container = ContainerProvider.getWebSocketContainer();
+            client = ClientManager.createClient();
+            
+            SslEngineConfigurator sslEngineConfigurator = new SslEngineConfigurator(new SslContextConfigurator());
+            sslEngineConfigurator.setHostVerificationEnabled(false);
+            client.getProperties().put(ClientProperties.SSL_ENGINE_CONFIGURATOR, sslEngineConfigurator);
+            
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
     }
-    
-    public void connectToServer(URI endpointURI)  {
-        try {
-             container.connectToServer(this, endpointURI);
-        } catch (DeploymentException|IOException ex) {
-            Logger.getLogger(VehicleClient.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+    public void connectToServer(URI endpointURI) throws InterruptedException {
+        latch = new CountDownLatch(1);
+        Thread thread = new Thread() {
+            public void run() {
+                try {
+                    client.connectToServer(VehicleClient.class, endpointURI);
+                    try {
+                        latch.await();
+                    } catch (InterruptedException ex) {
+                        Logger.getLogger(VehicleClient.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                } catch (DeploymentException | IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        };
+
+        thread.start();
+
     }
 
     /**
@@ -81,12 +107,14 @@ public class VehicleClient {
      */
     @OnClose
     public void onClose(Session userSession, CloseReason reason) {
+        latch.countDown();
         System.out.println("closing websocket");
         this.userSession = null;
     }
 
     /**
-     * Callback hook for Message Events. This method will be invoked when a client send a message.
+     * Callback hook for Message Events. This method will be invoked when a
+     * client send a message.
      *
      * @param message The text message
      */
@@ -112,7 +140,7 @@ public class VehicleClient {
      * @param message
      */
     public void sendMessage(String message) {
-        System.out.println(" sending " +  message);
+        System.out.println(" sending " + message);
         this.userSession.getAsyncRemote().sendText(message);
     }
 
@@ -121,8 +149,8 @@ public class VehicleClient {
      *
      * @author Peter Winzell
      */
-    
-    public static interface MessageHandler {
+    public interface MessageHandler {
+
         public void handleMessage(String message);
     }
 }
