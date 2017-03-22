@@ -69,7 +69,9 @@ public class VehicleClient {
 
     public void connectToServer(URI endpointURI) throws InterruptedException {
         latch = new CountDownLatch(1);
-        Thread thread = new Thread() {
+        Thread thread;
+        thread = new Thread() {
+            @Override
             public void run() {
                 try {
                     client.connectToServer(VehicleClient.class, endpointURI);
@@ -96,7 +98,7 @@ public class VehicleClient {
     @OnOpen
     public void onOpen(Session userSession) {
         System.out.println("opening websocket");
-        this.userSession = userSession;
+        VehicleClient.userSession = userSession;
     }
 
     /**
@@ -109,7 +111,7 @@ public class VehicleClient {
     public void onClose(Session userSession, CloseReason reason) {
         latch.countDown();
         System.out.println("closing websocket");
-        this.userSession = null;
+        VehicleClient.userSession = null;
     }
 
     /**
@@ -120,8 +122,8 @@ public class VehicleClient {
      */
     @OnMessage
     public void onMessage(String message) {
-        if (this.messageHandler != null) {
-            this.messageHandler.handleMessage(message);
+        if (VehicleClient.messageHandler != null) {
+            VehicleClient.messageHandler.handleMessage(message);
         }
     }
 
@@ -131,7 +133,7 @@ public class VehicleClient {
      * @param msgHandler
      */
     public void addMessageHandler(MessageHandler msgHandler) {
-        this.messageHandler = msgHandler;
+        VehicleClient.messageHandler = msgHandler;
     }
 
     /**
@@ -141,7 +143,7 @@ public class VehicleClient {
      */
     public void sendMessage(String message) {
         System.out.println(" sending " + message);
-        this.userSession.getAsyncRemote().sendText(message);
+        VehicleClient.userSession.getAsyncRemote().sendText(message);
     }
 
     /**
