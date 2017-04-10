@@ -113,12 +113,16 @@ public class CarSpeedSimulator extends Application {
     }
 
     private int ValidateJSonMessage(String message){
+        System.out.println(message);
+        
+        if (message.contains("SHIT"))
+            return -1;
          JsonReader aReader = Json.createReader(new StringReader(message));
          JsonObject jsonObject = aReader.readObject();
          
          
          String actionS = jsonObject.getString("action");
-         if (actionS.equals("subscribing")){
+         if (actionS.equals("subscription")){
              //subId = jsonObject.getString("subscriptionid");
              String value = jsonObject.getString("value");
              float val = Float.parseFloat(value);
@@ -126,6 +130,7 @@ public class CarSpeedSimulator extends Application {
          }
          else if(actionS.equals("subscribe")){
              subId = jsonObject.getString("subscriptionId");
+             return 0;
          }
          return -1;
         
@@ -135,7 +140,7 @@ public class CarSpeedSimulator extends Application {
     public void start(Stage primaryStage) { 
         
         try {
-            URI uri = new URI("wss://127.0.0.1:8080");
+            URI uri = new URI("ws://192.168.31.128:8080");
             System.out.println("URI is: " + uri.toString());
             
             
@@ -200,6 +205,7 @@ public class CarSpeedSimulator extends Application {
                 
                 String payLoad = stWriter.toString();
                 vehicleClient.sendMessage(payLoad);
+                
             }
         });
 
