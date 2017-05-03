@@ -140,7 +140,7 @@ public class CarSpeedSimulator extends Application {
     public void start(Stage primaryStage) { 
         
         try {
-            URI uri = new URI("ws://192.168.31.128:8080");
+            URI uri = new URI("wss://127.0.0.1:8080");
             System.out.println("URI is: " + uri.toString());
             
             

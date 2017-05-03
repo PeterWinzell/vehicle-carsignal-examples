@@ -58,9 +58,9 @@ public class VehicleClient {
             // container = ContainerProvider.getWebSocketContainer();
             client = ClientManager.createClient();
             
-           /* SslEngineConfigurator sslEngineConfigurator = new SslEngineConfigurator(new SslContextConfigurator());
+           SslEngineConfigurator sslEngineConfigurator = new SslEngineConfigurator(new SslContextConfigurator());
             sslEngineConfigurator.setHostVerificationEnabled(false);
-            client.getProperties().put(ClientProperties.SSL_ENGINE_CONFIGURATOR, sslEngineConfigurator);*/
+            client.getProperties().put(ClientProperties.SSL_ENGINE_CONFIGURATOR, sslEngineConfigurator);
             
         } catch (Exception e) {
             throw new RuntimeException(e);
