@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/libs/Java-WebSocket-1.3.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="db2658f013fb163de4a99274c2eb9e17efe535d2">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/2/Java-WebSocket-1.3.0_83bb84d3c0873c77508408b5ba3902ce1c6edaec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/14158a17ac5aa2f1d666cce99ae4f356e6f12f4d/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="c05b677d8aca4e437294460acbc6f4d4bd9cfa0c">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7df75571ac33082304d7ec31f9cdfc69e3e9c14e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/aacbfe05d5c8c5aea670b6a3d47fe8309fcea207/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="4a26a1154d053ab11aaf4c3967c42a4d66390991">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_5d1eef60d321c9c7b167f4059ba693f80642ee90/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/08307ba3e068dc6cb04fc2f7bb14b54bc5f6f299/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_7a46c0de68242a7e2cf2b5ad5f5a07737917723a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/e343606db030291a7ab03d891ac906acb4a82c48/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="95519720620b553f63afc789beba9ad582807f7c">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_0652ac4322f77c240291655e93dfa553108a2aa5/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/4d5bed0f05e2fb2fdcea298dd0f3ec402c30eea8/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="150252b33b00274cc868578ade018fda0d43a3eb">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_ab49ee75316bbe02e6012fc24da818cfb3deca55/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="330f4c7d5f16448faa9288cf9a61dd716f11d989">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run-bootstrap_52de65bb4840d098d0b7396fcd88250ae7c55518/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/e8e2a890a9e01cf7308c54996462666559a5ff16/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="d4cf6227dd6a2ceff0f7dcf0c324380b7abf2c28">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_e8e842059a7350f7cd8da85dd88d2775aa52bcd1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/f8a258c8e280428588a335cad00a9ab3ad6092b0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="47635644d0d5c103c1dd8360549eb9ba3225c7d3">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_f530c3a6f7b8b25641ba38f162eff7bc480b3ba0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="510aa6efc159983dfbffa676a0dae37568c0a46f">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10000/instant-run_dd924d092b5d32a4916d6fea81feb5b842021ab9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/04727d23fc62efa54da810fa0133dcbbb11a9db4/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="efb8cb62d47d157c29d1521daac7eefd4cb881ee">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_59f08798dd1000384342c067db9b955e66f58b5a/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/2bd68702bb5b620573a579e26c904d8614f3ec1e/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="6ef31f1555bb4cc513ec8d52711365a8b89f3600">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3b12001aea5d114de746a462cec79d2fc39afe8f/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/82e1e5c499b1918a5f1fa91aebec1b2583bf7ab0/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="38789e20ace9ab7dbd00554bd2673ab424478d3b">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_df201b59435ee880729a7c1c4c6c7264dde7049b/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/peterwinzell/.android/build-cache/ca9a2c396a79e100a89e13520261989060b2d0f1/output/jars/classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="25.0.0"
+        sha1="45f697922e6f072daa12f8a2995dc77ab03c11da">
+        <dex dex="/Users/peterwinzell/Development/WebSocketApps/W3CDemo_2/app/build/intermediates/transforms/dex/debug/folders/1000/10/classes_3450bbec030dd123cca42975b9fbc5d9cebabcd0/classes.dex" />
+    </item>
+
+</items>
