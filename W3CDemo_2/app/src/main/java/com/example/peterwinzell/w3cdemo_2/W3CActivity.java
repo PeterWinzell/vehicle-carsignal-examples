@@ -95,7 +95,7 @@ public class W3CActivity extends AppCompatActivity {
             = new CompoundButton.OnCheckedChangeListener(){
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
-            String json = JsonDataUtility.getJSONDataSetBoolean(Integer.toString(m_brakerequestId++),JsonDataUtility.parkingbrake_VSS_leaf,!isChecked);
+            String json = JsonDataUtility.getJSONDataSetBoolean(Integer.toString(m_brakerequestId++),JsonDataUtility.parkingbrake_VSS_leaf,isChecked);
             try {
                 mWebSocketClient.send(json);
             }catch(Exception ex){
@@ -176,10 +176,12 @@ public class W3CActivity extends AppCompatActivity {
         //connect listener with brake button res
         m_brakeButton = (ToggleButton) findViewById(R.id.brake);
         m_brakeButton.setOnCheckedChangeListener(mBrakeButtonListener);
+        m_brakeButton.setChecked(true);
 
         // connect listener with cruise listener res
         m_cruiseButton = (ToggleButton) findViewById(R.id.cruisecontrol);
         m_cruiseButton.setOnCheckedChangeListener(mCruiseButtonListener);
+        m_cruiseButton.setChecked(true);
     }
 
     private void HandleSpeed(JSONObject json){

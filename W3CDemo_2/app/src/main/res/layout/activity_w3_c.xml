@@ -76,8 +76,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/toggle_selector"
                     android:layout_weight="1"
-                    android:textOff="CruiseControl-off"
-                    android:textOn="CruiseControl-on" />
+                    android:textOff="CruiseControl-on"
+                    android:textOn="CruiseControl-off" />
 
                 </LinearLayout>
 
