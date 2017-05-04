@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
@@ -44,10 +45,29 @@ public class W3CActivity extends AppCompatActivity {
     private int m_brakerequestId = 1000;
     private int m_cruiserequestId = 3000;
 
-    private int m_oldspeed;
-    private int m_oldrpm;
+    private int m_speed = 0;
+    private int m_rpm;
+
+    String  m_text1 = "";
+    String  m_text2 = "";
+
+    private UIHandler ui_updater = new UIHandler();
 
     private String serverURL = "ws://192.168.31.122:8080";
+
+    //private String serverURL = "ws://192.168.0.10:8080";
+
+    class UIHandler extends Handler{
+        @Override
+        public void handleMessage(Message msg){
+
+            messageView.setText(m_text1 + m_text2);
+            speedometer.setSpeed(m_speed,100,0);
+            rpmmeter.setSpeed(m_rpm,100,0);
+
+            sendMessageDelayed(obtainMessage(0),50);
+        }
+    }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -76,7 +96,13 @@ public class W3CActivity extends AppCompatActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
             String json = JsonDataUtility.getJSONDataSetBoolean(Integer.toString(m_brakerequestId++),JsonDataUtility.parkingbrake_VSS_leaf,!isChecked);
-            mWebSocketClient.send(json);
+            try {
+                mWebSocketClient.send(json);
+            }catch(Exception ex){
+                ex.printStackTrace();
+                m_text1 = ex.toString();
+            }
+
         }
     };
 
@@ -86,7 +112,13 @@ public class W3CActivity extends AppCompatActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
             String json = JsonDataUtility.getJSONDataSetBoolean(Integer.toString(m_cruiserequestId++),JsonDataUtility.cruisecontrol_VSS_leaf,isChecked);
-            mWebSocketClient.send(json);
+            try {
+                mWebSocketClient.send(json);
+            }
+            catch(Exception ex){
+                ex.printStackTrace();
+                m_text1 = ex.toString();
+            }
         }
     };
 
@@ -122,13 +154,13 @@ public class W3CActivity extends AppCompatActivity {
             }
         });
 
-        speedometer.setMaxSpeed(300);
+        speedometer.setMaxSpeed(200);
         speedometer.setLabelTextSize(25);
         speedometer.setMajorTickStep(30);
         speedometer.setMinorTicks(2);
         speedometer.addColoredRange(0, 80, Color.GREEN);
-        speedometer.addColoredRange(80, 158, Color.YELLOW);
-        speedometer.addColoredRange(150, 300, Color.RED);
+        speedometer.addColoredRange(80,150, Color.YELLOW);
+        speedometer.addColoredRange(150, 200, Color.RED);
         //speedometer.setSpeed(100, 1000, 300);
 
         rpmmeter.setMaxSpeed(8000);
@@ -163,17 +195,18 @@ public class W3CActivity extends AppCompatActivity {
 
         //System.out.println("new speed is " + speed + " oldspeed is " + m_oldspeed + " progress is " + progress);
         final String json_s = json.toString();
-
-        new Handler(Looper.getMainLooper()).post(new Runnable() { // Tried new Handler(Looper.myLopper()) also
+        m_speed = speed;
+        m_text1 = json_s;
+        /*new Handler(Looper.getMainLooper()).post(new Runnable() { // Tried new Handler(Looper.myLopper()) also
             @Override
             public void run() {
                 messageView.setText(json_s + messageView.getText() );
-                speedometer.setSpeed(speed,800,0);
+                speedometer.setSpeed(speed,200,0);
                 // m_oldspeed = (int) Math.round(speedometer.getSpeed());
                         /*TextView textView = (TextView)findViewById(R.id.messages);
-                        textView.append(outputS);*/
+                        textView.append(outputS);
             }
-        });
+        });*/
     }
 
     private void HandleRPM(JSONObject json){
@@ -187,20 +220,22 @@ public class W3CActivity extends AppCompatActivity {
         final int rpm = (int) Math.round(rpm_d);
         //final int progress = rpm -
         final String json_s = json.toString();
-
-        new Handler(Looper.getMainLooper()).post(new Runnable() { // Tried new Handler(Looper.myLopper()) also
+        m_rpm = rpm;
+        m_text2 = json_s;
+        /*new Handler(Looper.getMainLooper()).post(new Runnable() { // Tried new Handler(Looper.myLopper()) also
             @Override
             public void run() {
-                messageView.setText(json_s + messageView.getText() );
-                rpmmeter.setSpeed(rpm,400,0);
+                //messageView.setText(json_s + messageView.getText() );
+                rpmmeter.setSpeed(rpm,200,0);
             }
-        });
+        });*/
     }
 
     private void connectWebSocket() {
         URI uri;
         try {
             uri = new URI(serverURL);
+            ui_updater.sendMessage(ui_updater.obtainMessage(0));
         } catch (URISyntaxException e) {
             e.printStackTrace();
             return;
@@ -212,6 +247,8 @@ public class W3CActivity extends AppCompatActivity {
                 Log.i("Websocket", "Opened");
 
                 String jsonData1,jsonData2;
+
+
 
                 jsonData1 = JsonDataUtility.getJSONDataSubscribe(m_requestSpeedId,JsonDataUtility.speed_VSS_leaf);
                 mWebSocketClient.send(jsonData1);
@@ -282,3 +319,4 @@ public class W3CActivity extends AppCompatActivity {
         mWebSocketClient.connect();
     }
 }
+
