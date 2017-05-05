@@ -53,9 +53,9 @@ public class W3CActivity extends AppCompatActivity {
 
     private UIHandler ui_updater = new UIHandler();
 
-    private String serverURL = "ws://192.168.31.122:8080";
+     //private String serverURL = "ws://192.168.31.122:8080";
 
-    //private String serverURL = "ws://192.168.0.10:8080";
+    private String serverURL = "ws://192.168.0.10:8080";
 
     class UIHandler extends Handler{
         @Override
