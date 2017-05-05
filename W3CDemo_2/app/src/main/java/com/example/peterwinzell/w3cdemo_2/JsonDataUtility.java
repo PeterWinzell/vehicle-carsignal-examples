@@ -52,4 +52,17 @@ public class JsonDataUtility {
         }
         return jsonObject.toString();
     }
+
+    static String getJSONDataGet(String requestId,String signalvalue){
+        JSONObject jsonObject = new JSONObject();
+        try{
+            jsonObject.put("action","get");
+            jsonObject.put("path","signalValue");
+            jsonObject.put("requestId",requestId);
+        }
+        catch(JSONException ex){
+            ex.printStackTrace();
+        }
+        return jsonObject.toString();
+    }
 }

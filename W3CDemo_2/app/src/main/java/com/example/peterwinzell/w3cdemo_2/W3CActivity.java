@@ -250,7 +250,9 @@ public class W3CActivity extends AppCompatActivity {
 
                 String jsonData1,jsonData2;
 
-
+                //Here we can check the current status of parking and cruise control
+                // JsonDataUtility.getJSONDataGet("5000",JsonDataUtility.parkingbrake_VSS_leaf);
+                // JsonDataUtility.getJSONDataGet("5001",JsonDataUtility.cruisecontrol_VSS_leaf);
 
                 jsonData1 = JsonDataUtility.getJSONDataSubscribe(m_requestSpeedId,JsonDataUtility.speed_VSS_leaf);
                 mWebSocketClient.send(jsonData1);
