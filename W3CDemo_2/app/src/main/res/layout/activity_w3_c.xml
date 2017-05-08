@@ -67,8 +67,8 @@
                     android:layout_marginStart="16dp"
                     android:background="@drawable/toggle_selector"
                     android:layout_weight="1"
-                    android:textOff="parkingbrake-on"
-                    android:textOn="Parkingbrake-off" />
+                    android:textOff="parkingbrake-off"
+                    android:textOn="Parkingbrake-on" />
                 <!-- Custom styled ToggleButton -->
                 <ToggleButton
                     android:id="@+id/cruisecontrol"
@@ -76,8 +76,8 @@
                     android:layout_height="wrap_content"
                     android:background="@drawable/toggle_selector"
                     android:layout_weight="1"
-                    android:textOff="CruiseControl-on"
-                    android:textOn="CruiseControl-off" />
+                    android:textOff="CruiseControl-off"
+                    android:textOn="CruiseControl-on" />
 
                 </LinearLayout>
 

@@ -14,6 +14,7 @@ import android.widget.CompoundButton;
 import android.widget.TextView;
 import android.graphics.Color;
 import android.widget.ToggleButton;
+import android.util.Log;
 
 import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.drafts.Draft_17;
@@ -96,6 +97,7 @@ public class W3CActivity extends AppCompatActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
             String json = JsonDataUtility.getJSONDataSetBoolean(Integer.toString(m_brakerequestId++),JsonDataUtility.parkingbrake_VSS_leaf,isChecked);
+            //m_text2 = "park " + isChecked;
             try {
                 mWebSocketClient.send(json);
             }catch(Exception ex){
@@ -112,6 +114,7 @@ public class W3CActivity extends AppCompatActivity {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked){
             String json = JsonDataUtility.getJSONDataSetBoolean(Integer.toString(m_cruiserequestId++),JsonDataUtility.cruisecontrol_VSS_leaf,isChecked);
+            //m_text1 = "cruise " + isChecked + " ";
             try {
                 mWebSocketClient.send(json);
             }
@@ -176,12 +179,12 @@ public class W3CActivity extends AppCompatActivity {
         //connect listener with brake button res
         m_brakeButton = (ToggleButton) findViewById(R.id.brake);
         m_brakeButton.setOnCheckedChangeListener(mBrakeButtonListener);
-        m_brakeButton.setChecked(true);
+        //m_brakeButton.setChecked(false);
 
         // connect listener with cruise listener res
         m_cruiseButton = (ToggleButton) findViewById(R.id.cruisecontrol);
         m_cruiseButton.setOnCheckedChangeListener(mCruiseButtonListener);
-        m_cruiseButton.setChecked(true);
+        //m_cruiseButton.setChecked(false);
     }
 
     private void HandleSpeed(JSONObject json){
@@ -248,16 +251,18 @@ public class W3CActivity extends AppCompatActivity {
             public void onOpen(ServerHandshake serverHandshake) {
                 Log.i("Websocket", "Opened");
 
-                String jsonData1,jsonData2;
-
-                //Here we can check the current status of parking and cruise control
-                // JsonDataUtility.getJSONDataGet("5000",JsonDataUtility.parkingbrake_VSS_leaf);
-                // JsonDataUtility.getJSONDataGet("5001",JsonDataUtility.cruisecontrol_VSS_leaf);
+                String jsonData1,jsonData2, parkData, cruiseData;
 
                 jsonData1 = JsonDataUtility.getJSONDataSubscribe(m_requestSpeedId,JsonDataUtility.speed_VSS_leaf);
                 mWebSocketClient.send(jsonData1);
                 jsonData2 = JsonDataUtility.getJSONDataSubscribe(m_requestRPMId,JsonDataUtility.rpm_VSS_leaf);
                 mWebSocketClient.send(jsonData2);
+
+                //Here we can check the current status of parking and cruise control
+                parkData = JsonDataUtility.getJSONDataGet("5000",JsonDataUtility.parkingbrake_VSS_leaf);
+                mWebSocketClient.send(parkData);
+                cruiseData = JsonDataUtility.getJSONDataGet("5001",JsonDataUtility.cruisecontrol_VSS_leaf);
+                mWebSocketClient.send(cruiseData);
             }
 
             @Override
@@ -278,7 +283,7 @@ public class W3CActivity extends AppCompatActivity {
                             HandleRPM(json);
                         }
 
-                        message = action + " : " + json.getString("value") + " ";
+                       // message = action + " : " + json.getString("value") + " ";
 
                     } else if (action.equals("subscribe")) {
 
@@ -291,7 +296,7 @@ public class W3CActivity extends AppCompatActivity {
 
                         message = action + " : " + requestId + " ";
 
-                    }else if (action.equals("set")){
+                    } else if (action.equals("set")){
                         String requestId = json.getString("requestId");
                         if (json.isNull("error"))
                             message = "set succesful " + requestId;
@@ -299,6 +304,33 @@ public class W3CActivity extends AppCompatActivity {
                             JSONObject errors = json.getJSONObject("error");
                             String emessage = errors.getString("message");
                             message = " set " + requestId + " " + emessage;
+                        }
+                    } else if (action.equals("get")) {
+                        String requestId = json.getString("requestId");
+                        if (json.isNull("error")) {
+                            //message = "get succesful " + requestId;
+
+                            message = action + " : " + json.getString("value") + " ";
+
+                            boolean boolValue = false;
+
+                            try {
+                                boolValue = json.getBoolean("value");
+
+                            } catch (JSONException e) {
+                                m_text1 = "" + e.getMessage();
+                            }
+
+                            if (requestId.equals("5000")) {
+                                m_brakeButton.setChecked(boolValue);
+                            }
+                            else if (requestId.equals("5001")) {
+                                m_cruiseButton.setChecked(boolValue);
+                            }
+                        } else {
+                            JSONObject errors = json.getJSONObject("error");
+                            String emessage = errors.getString("message");
+                            message = " get " + requestId + " " + emessage;
                         }
                     }
 

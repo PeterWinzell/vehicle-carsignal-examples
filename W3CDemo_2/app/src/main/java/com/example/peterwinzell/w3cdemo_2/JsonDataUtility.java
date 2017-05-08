@@ -57,7 +57,7 @@ public class JsonDataUtility {
         JSONObject jsonObject = new JSONObject();
         try{
             jsonObject.put("action","get");
-            jsonObject.put("path","signalValue");
+            jsonObject.put("path", signalvalue);
             jsonObject.put("requestId",requestId);
         }
         catch(JSONException ex){

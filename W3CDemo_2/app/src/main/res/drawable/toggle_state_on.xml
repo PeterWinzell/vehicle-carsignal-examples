@@ -4,7 +4,7 @@
         <shape android:shape="oval">
             <!-- Draw a 5dp width border around shape -->
             <stroke
-                android:color="#4c975d"
+                android:color="#b1113e"
                 android:width="5dp"
                 />
 
@@ -15,7 +15,7 @@
         android:bottom="5dp"
         >
         <shape android:shape="oval">
-            <solid android:color="#6dd988"/>
+            <solid android:color="#f51354"/>
         </shape>
     </item>
 </layer-list>
