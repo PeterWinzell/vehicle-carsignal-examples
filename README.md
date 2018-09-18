@@ -12,5 +12,5 @@ The server currently implements SUBSCRIBE and UNSUBSCRIBE. The "simulated" signa
 
 
 
-Peter Winzell, Mitsubishi Electric.
+Peter Winzell.
 peterwinzell.gbg@gmail.com
